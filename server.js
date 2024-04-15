@@ -1,6 +1,8 @@
-const express = require("express");
+import express from "express";
+import path from "path";
+
+const __dirname = path.resolve();
 const app = express();
-const path = require("path");
 
 app.get("/resister", (req, res) => {
   res.sendFile(__dirname + "/public/resister.html");
