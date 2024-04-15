@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs";
 const fn = "userList.csv";
 
+app.use(express.urlencoded());
 const __dirname = path.resolve();
 const app = express();
 
@@ -13,8 +14,6 @@ app.get("/resister", (req, res) => {
 app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/public/login.html");
 });
-
-app.use(express.urlencoded());
 
 app.post("/login", (req, res) => {
   console.log(res.body);
