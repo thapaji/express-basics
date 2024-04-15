@@ -1,5 +1,7 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
+const fn = 'userList.csv';
 
 const __dirname = path.resolve();
 const app = express();
@@ -18,10 +20,17 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-app.use(express.urlencoded())
+app.use(express.urlencoded());
+
 app.post("/resister", (req, res) => {
+  const { email, password } = req.body;
+  const str = email + "," + password+'\n';
+  fs.appendFile(fn, str, (error) => {
+    console.log(error);
+  });
+
   console.log(req.body);
-  res.send('Data Received')
+  res.send("Data Received");
 });
 
 app.listen(8000, (error) => {
